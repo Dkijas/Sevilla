@@ -15,6 +15,11 @@ export default class MenuScene extends Phaser.Scene {
    * Crea la interfaz del menú principal
    */
   create() {
+    // Agregar imagen de fondo
+    this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'pantalla_fondo')
+      .setOrigin(0.5)
+      .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
+    
     // Texto de prueba
     this.add.text(100, 100, '¡Funciona!', { fontSize: '32px', color: '#fff' });
 

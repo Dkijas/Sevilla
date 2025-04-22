@@ -26,7 +26,44 @@
       align-items: center;
       height: 100vh;
     }
+    .error-container {
+      background-color: #e74c3c;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    .error-container h2 {
+      margin-top: 0;
+    }
+    .error-container code {
+      background: rgba(0,0,0,0.3);
+      padding: 5px;
+      border-radius: 3px;
+    }
   </style>
+  <script>
+    // Verificar si la página se está cargando como archivo local
+    if (window.location.protocol === 'file:') {
+      window.onload = function() {
+        // Ocultar el contenido original
+        document.body.innerHTML = `
+          <div class="error-container">
+            <h2>¡Atención!</h2>
+            <p>Este juego necesita ejecutarse en un servidor local para funcionar correctamente.</p>
+            <p>Por favor, usa alguno de estos métodos:</p>
+            <ul style="text-align: left; display: inline-block;">
+              <li>Extensión "Live Server" en Visual Studio Code</li>
+              <li>Ejecutar en terminal: <code>python -m http.server</code></li>
+              <li>Luego accede a: <code>http://localhost:5500</code></li>
+            </ul>
+          </div>
+        `;
+      };
+    }
+  </script>
 </head>
 <body>
   <div id="diagnostico">

@@ -15,14 +15,21 @@ export default class BootScene extends Phaser.Scene {
    * Precarga de recursos del juego
    */
   preload() {
+    // Cargar la imagen de fondo
+    this.load.image('pantalla_fondo', 'assets/images/Pantalla_fondo.png');
+    
+    // Añadir la imagen de fondo
+    const width = this.cameras.main.width;
+    const height = this.cameras.main.height;
+    
+    // Añadir la imagen de fondo (se mostrará en create())
+    
     // Crear barra de progreso para la carga
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
     progressBox.fillRect(240, 270, 520, 50);
     
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
     const loadingText = this.make.text({
       x: width / 2,
       y: height / 2 - 50,
@@ -49,7 +56,7 @@ export default class BootScene extends Phaser.Scene {
     
     // Carga de assets
     
-    // Asset de prueba
+    // Imagen de fondo para las cargas
     this.load.image('placeholder', 'assets/images/placeholder.png');
     
     // Comentamos estas líneas mientras no tengamos assets
@@ -75,6 +82,11 @@ export default class BootScene extends Phaser.Scene {
    * Creación de elementos y transición a la siguiente escena
    */
   create() {
+    // Agregar la imagen de fondo
+    this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'pantalla_fondo')
+      .setOrigin(0.5)
+      .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
+    
     // Comentamos la creación de animaciones para los sprites inexistentes
     /*
     this.anims.create({
