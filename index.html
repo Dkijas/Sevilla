@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Juego Phaser</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #2c3e50;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #diagnostico {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 100;
+    }
+    #game-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="diagnostico">
+    <h3>Diagnóstico</h3>
+    <div id="estado">Estado: Cargando HTML...</div>
+    <div id="phaser-estado">Phaser: No detectado</div>
+  </div>
+  
+  <div id="game-container"></div>
+  
+  <!-- Librerías -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  
+  <script>
+    // Verificar que el HTML está cargado
+    document.getElementById('estado').textContent = 'Estado: HTML cargado';
+    
+    // Verificar que Phaser está disponible
+    if (typeof Phaser !== 'undefined') {
+      document.getElementById('phaser-estado').textContent = 'Phaser: v' + Phaser.VERSION + ' cargado correctamente';
+    } else {
+      document.getElementById('phaser-estado').textContent = 'Phaser: ERROR - No se ha cargado';
+    }
+  </script>
+  
+  <!-- Script principal como módulo ES -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html> 

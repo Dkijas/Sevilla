@@ -1,0 +1,135 @@
+{
+  "hermandades": [
+    {
+      "id": 1,
+      "nombre": "Hermandad de El Silencio",
+      "fundacion": 1564,
+      "sede": "Iglesia de San Antonio Abad",
+      "habito": {
+        "color": "negro",
+        "spriteKey": "nazarenos",
+        "frame": 0
+      },
+      "historia": [
+        { "ano": 1564, "evento": "Fundación", "descripcion": "Fundada como hermandad de penitencia" },
+        { "ano": 1621, "evento": "Reforma", "descripcion": "Se aprueban nuevas reglas" },
+        { "ano": 1810, "evento": "Crisis", "descripcion": "Problemas durante la invasión francesa" },
+        { "ano": 1920, "evento": "Crecimiento", "descripcion": "Gran aumento de miembros" },
+        { "ano": 1980, "evento": "Renovación", "descripcion": "Restauración del patrimonio" }
+      ],
+      "posicion": { "x": 320, "y": 450 }
+    },
+    {
+      "id": 2,
+      "nombre": "Hermandad de La Macarena",
+      "fundacion": 1595,
+      "sede": "Basílica de La Macarena",
+      "habito": {
+        "color": "blanco y verde",
+        "spriteKey": "nazarenos",
+        "frame": 1
+      },
+      "historia": [
+        { "ano": 1595, "evento": "Fundación", "descripcion": "Fundada por artesanos del barrio" },
+        { "ano": 1654, "evento": "Expansión", "descripcion": "Adquisición de nueva imagen titular" },
+        { "ano": 1750, "evento": "Esplendor", "descripcion": "Época de mayor auge" },
+        { "ano": 1936, "evento": "Crisis", "descripcion": "Daños durante la Guerra Civil" },
+        { "ano": 1970, "evento": "Cambio de sede", "descripcion": "Traslado a la basílica actual" }
+      ],
+      "posicion": { "x": 580, "y": 320 }
+    },
+    {
+      "id": 3,
+      "nombre": "Hermandad de La Esperanza de Triana",
+      "fundacion": 1418,
+      "sede": "Capilla de los Marineros",
+      "habito": {
+        "color": "blanco y morado",
+        "spriteKey": "nazarenos",
+        "frame": 2
+      },
+      "historia": [
+        { "ano": 1418, "evento": "Fundación", "descripcion": "Fundada por marineros del barrio de Triana" },
+        { "ano": 1560, "evento": "Fusión", "descripcion": "Unión con otra hermandad local" },
+        { "ano": 1675, "evento": "Esplendor", "descripcion": "Época dorada con grandes adquisiciones" },
+        { "ano": 1868, "evento": "Crisis", "descripcion": "Problemas durante la revolución" },
+        { "ano": 1962, "evento": "Renovación", "descripcion": "Renovación de insignias y ajuar" }
+      ],
+      "posicion": { "x": 200, "y": 380 }
+    },
+    {
+      "id": 4,
+      "nombre": "Hermandad de El Gran Poder",
+      "fundacion": 1431,
+      "sede": "Basílica del Gran Poder",
+      "habito": {
+        "color": "negro y rojo",
+        "spriteKey": "nazarenos",
+        "frame": 3
+      },
+      "historia": [
+        { "ano": 1431, "evento": "Fundación", "descripcion": "Fundada como hermandad de sangre" },
+        { "ano": 1570, "evento": "Adquisición", "descripcion": "Encargo de la imagen titular" },
+        { "ano": 1701, "evento": "Cambio de sede", "descripcion": "Traslado a su sede histórica" },
+        { "ano": 1830, "evento": "Crisis", "descripcion": "Pérdida de patrimonio" },
+        { "ano": 1965, "evento": "Coronación", "descripcion": "Gran ceremonia de coronación" }
+      ],
+      "posicion": { "x": 450, "y": 280 }
+    }
+  ],
+  "eventosFuturos": [
+    {
+      "ano": 2025,
+      "evento": "Gran Jubileo",
+      "descripcion": "Celebración del jubileo cofrade en Sevilla",
+      "afecta": ["todas"]
+    },
+    {
+      "ano": 2030,
+      "evento": "Innovación tecnológica",
+      "descripcion": "Implementación de nuevas tecnologías en procesiones",
+      "afecta": ["todas"]
+    },
+    {
+      "ano": 2045,
+      "evento": "Crisis de vocaciones",
+      "descripcion": "Reducción del número de hermanos",
+      "afecta": ["algunas"]
+    }
+  ],
+  "rutasOficiales": [
+    {
+      "id": "ruta_centro",
+      "nombre": "Carrera Oficial Centro",
+      "puntos": [
+        {"x": 350, "y": 350},
+        {"x": 380, "y": 330},
+        {"x": 410, "y": 320},
+        {"x": 450, "y": 320},
+        {"x": 490, "y": 330},
+        {"x": 520, "y": 350},
+        {"x": 530, "y": 380},
+        {"x": 520, "y": 410},
+        {"x": 490, "y": 430},
+        {"x": 450, "y": 440},
+        {"x": 410, "y": 430},
+        {"x": 380, "y": 410},
+        {"x": 350, "y": 380}
+      ]
+    },
+    {
+      "id": "ruta_triana",
+      "nombre": "Camino de Triana",
+      "puntos": [
+        {"x": 200, "y": 380},
+        {"x": 220, "y": 370},
+        {"x": 240, "y": 360},
+        {"x": 260, "y": 350},
+        {"x": 280, "y": 340},
+        {"x": 300, "y": 340},
+        {"x": 320, "y": 350},
+        {"x": 350, "y": 350}
+      ]
+    }
+  ]
+} 
