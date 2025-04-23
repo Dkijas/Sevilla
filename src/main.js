@@ -30,17 +30,13 @@ class TestScene extends Phaser.Scene {
   create() {
     console.log('TestScene creada correctamente');
     this.add.text(100, 100, 'TestScene funciona!', { font: '24px Arial', fill: '#ffffff' });
-    this.add.rectangle(400, 300, 200, 200, 0xff0000);
   }
 }
 
 // Importamos las escenas originales
-// Comentamos las importaciones para probar con una escena básica
-/*
 import BootScene from './scenes/BootScene.js';
 import MenuScene from './scenes/MenuScene.js';
 import GameScene from './scenes/GameScene.js';
-*/
 
 /**
  * Configuración principal del juego Phaser
@@ -51,10 +47,8 @@ const config = {
   height: 768,
   parent: 'game-container',
   backgroundColor: '#333333',
-  // Usamos solo la escena de prueba por ahora
-  scene: [TestScene],
-  // Comentamos las escenas originales para pruebas
-  // scene: [BootScene, MenuScene, GameScene],
+  // Usamos las escenas originales
+  scene: [BootScene, MenuScene, GameScene],
   physics: {
     default: 'arcade',
     arcade: {

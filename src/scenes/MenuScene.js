@@ -20,24 +20,8 @@ export default class MenuScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
     
-    // Texto de prueba
-    this.add.text(100, 100, '¡Funciona!', { fontSize: '32px', color: '#fff' });
-
-    // Un rectángulo rojo con Graphics
-    const g = this.add.graphics();
-    g.fillStyle(0xff0000, 1);
-    g.fillRect(200, 200, 150, 100);
-    
-    // Mostrar el sprite de prueba
-    this.add.image(512, 384, 'placeholder').setScale(2);
-    
-    // -- Este es el código original del menú, comentado para las pruebas iniciales
-    /*
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
-    
-    // Fondo del menú
-    this.add.rectangle(0, 0, width, height, 0x1a237e).setOrigin(0, 0);
     
     // Título del juego
     const titleText = this.add.text(width / 2, height / 4, 'SEMANA SANTA SIMULATOR', {
@@ -89,6 +73,5 @@ export default class MenuScene extends Phaser.Scene {
     loadButton.on('pointerdown', () => {
       console.log('Cargar Partida');
     });
-    */
   }
 } 
