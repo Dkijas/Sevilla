@@ -18,6 +18,14 @@ export default class BootScene extends Phaser.Scene {
     // Cargar la imagen de fondo
     this.load.image('pantalla_fondo', 'assets/images/Pantalla_fondo.png');
     
+    // Intentar cargar el plano de Sevilla como imagen
+    // Nota: Los PDF no se pueden cargar directamente, se necesita convertir a PNG
+    try {
+      this.load.image('plano-sevilla-img', 'assets/images/sevilla_map.png');
+    } catch (e) {
+      console.warn("No se pudo cargar el plano de Sevilla como imagen.");
+    }
+    
     // Añadir la imagen de fondo
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
@@ -59,9 +67,15 @@ export default class BootScene extends Phaser.Scene {
     // Imagen de fondo para las cargas
     this.load.image('placeholder', 'assets/images/placeholder.png');
     
-    // Comentamos estas líneas mientras no tengamos assets
-    // this.load.tilemapTiledJSON('sevilla', 'assets/tilemaps/sevilla.json');
-    // this.load.image('tiles', 'assets/images/tileset.png');
+    // Intentar cargar el mapa si existe el JSON
+    this.load.tilemapTiledJSON('sevilla', 'assets/tilemaps/sevilla.json');
+    
+    // Intentar cargar el tileset si existe
+    try {
+      this.load.image('tiles', 'assets/images/tileset.png');
+    } catch (e) {
+      console.warn("No se pudo cargar el tileset. Se usará un mapa alternativo.");
+    }
     
     // Sprites
     // this.load.spritesheet('nazareno', 'assets/images/nazareno.png', { 

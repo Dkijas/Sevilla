@@ -20,24 +20,9 @@ export default class MenuScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
     
-    // Texto de prueba
-    this.add.text(100, 100, '¡Funciona!', { fontSize: '32px', color: '#fff' });
-
-    // Un rectángulo rojo con Graphics
-    const g = this.add.graphics();
-    g.fillStyle(0xff0000, 1);
-    g.fillRect(200, 200, 150, 100);
-    
-    // Mostrar el sprite de prueba
-    this.add.image(512, 384, 'placeholder').setScale(2);
-    
-    // -- Este es el código original del menú, comentado para las pruebas iniciales
-    /*
+    // -- Descomentamos el código original del menú
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
-    
-    // Fondo del menú
-    this.add.rectangle(0, 0, width, height, 0x1a237e).setOrigin(0, 0);
     
     // Título del juego
     const titleText = this.add.text(width / 2, height / 4, 'SEMANA SANTA SIMULATOR', {
@@ -82,13 +67,36 @@ export default class MenuScene extends Phaser.Scene {
     
     // Evento para el botón "Crear Hermandad"
     createButton.on('pointerdown', () => {
-      this.scene.start('GameScene');
+      // Pasamos el parámetro newGame: true para indicar que es una nueva partida
+      this.scene.start('GameScene', { newGame: true });
     });
     
     // Evento para el botón "Cargar Partida"
     loadButton.on('pointerdown', () => {
-      console.log('Cargar Partida');
+      // Intenta cargar una partida guardada
+      try {
+        const savedData = localStorage.getItem('hermandadSave');
+        if (savedData) {
+          const gameData = JSON.parse(savedData);
+          this.scene.start('GameScene', { newGame: false, savedData: gameData });
+        } else {
+          console.log('No hay partidas guardadas');
+          // Mostrar un mensaje temporal indicando que no hay partidas
+          const message = this.add.text(
+            width / 2, 
+            height / 2 + 160, 
+            'No hay partidas guardadas', 
+            { font: '18px Arial', fill: '#ff0000' }
+          ).setOrigin(0.5);
+          
+          // Eliminar el mensaje después de 3 segundos
+          this.time.delayedCall(3000, () => {
+            message.destroy();
+          });
+        }
+      } catch (e) {
+        console.error('Error al cargar partida:', e);
+      }
     });
-    */
   }
 } 

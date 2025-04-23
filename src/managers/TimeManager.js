@@ -40,61 +40,8 @@ export default class TimeManager {
    * Crea la interfaz para controlar el tiempo
    */
   createTimeUI() {
-    const width = this.scene.cameras.main.width;
-    const height = this.scene.cameras.main.height;
-    
-    // Panel para el slider de tiempo
-    const timePanel = this.scene.add.rectangle(
-      width / 2,
-      height - 40,
-      width - 100,
-      50,
-      0x000000,
-      0.7
-    ).setScrollFactor(0);
-    
-    // Textos de años (min y max)
-    this.scene.add.text(
-      60,
-      height - 40,
-      `${this.minYear}`,
-      {
-        font: '16px Arial',
-        fill: '#ffffff'
-      }
-    ).setOrigin(0.5).setScrollFactor(0);
-    
-    this.scene.add.text(
-      width - 60,
-      height - 40,
-      `${this.maxYear}`,
-      {
-        font: '16px Arial',
-        fill: '#ffffff'
-      }
-    ).setOrigin(0.5).setScrollFactor(0);
-    
-    // Crear marcador de año actual (punto que se mueve en la línea de tiempo)
-    this.timeMarker = this.scene.add.circle(
-      this.calculateMarkerPosition(),
-      height - 40,
-      10,
-      0xffffff
-    ).setScrollFactor(0);
-    
-    // Eventos interactivos para el panel de tiempo
-    timePanel.setInteractive();
-    timePanel.on('pointerdown', (pointer) => {
-      // Calcular nuevo año basado en la posición X del clic
-      const relativeX = pointer.x - 60;
-      const totalWidth = width - 120;
-      const yearRange = this.maxYear - this.minYear;
-      const yearOffset = Math.floor((relativeX / totalWidth) * yearRange);
-      const newYear = this.minYear + yearOffset;
-      
-      // Actualizar al nuevo año
-      this.setYear(newYear);
-    });
+    // La línea de tiempo inferior ha sido eliminada
+    // No se crean elementos visuales para la línea de tiempo
   }
   
   /**
@@ -102,13 +49,8 @@ export default class TimeManager {
    * @returns {number} - Posición X en la pantalla
    */
   calculateMarkerPosition() {
-    const width = this.scene.cameras.main.width;
-    const totalWidth = width - 120;
-    const yearRange = this.maxYear - this.minYear;
-    const yearPosition = this.currentYear - this.minYear;
-    const relativePosition = yearPosition / yearRange;
-    
-    return 60 + (relativePosition * totalWidth);
+    // Como la línea de tiempo ha sido eliminada, devolvemos un valor predeterminado
+    return 0;
   }
   
   /**
@@ -161,10 +103,7 @@ export default class TimeManager {
     this.currentYear = year;
     window.gameData.currentYear = year;
     
-    // Actualizar marcador visual si existe
-    if (this.timeMarker) {
-      this.timeMarker.x = this.calculateMarkerPosition();
-    }
+    // Ya no hay marcador visual que actualizar
     
     // Actualizar texto de año en la UI
     if (this.scene.yearText) {
