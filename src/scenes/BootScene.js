@@ -77,19 +77,107 @@ export default class BootScene extends Phaser.Scene {
       console.warn("No se pudo cargar el tileset. Se usará un mapa alternativo.");
     }
     
-    // Sprites
-    // this.load.spritesheet('nazareno', 'assets/images/nazareno.png', { 
-    //   frameWidth: 32, 
-    //   frameHeight: 64 
-    // });
-    // this.load.spritesheet('paso', 'assets/images/paso.png', { 
-    //   frameWidth: 128, 
-    //   frameHeight: 128 
-    // });
-    // this.load.image('ui-buttons', 'assets/images/ui-buttons.png');
+    // Sprites para procesiones
+    this.load.image('cruz_guia', 'assets/images/cruz_guia.png', { 
+      timeout: 5000 // Aumentar tiempo de espera para carga
+    });
+    
+    this.load.image('nazareno', 'assets/images/nazareno.png', { 
+      timeout: 5000 
+    });
+    
+    this.load.image('paso_misterio', 'assets/images/paso_misterio.png', { 
+      timeout: 5000 
+    });
+    
+    this.load.image('paso_gloria', 'assets/images/paso_gloria.png', { 
+      timeout: 5000 
+    });
+    
+    // Sprites de respaldo en caso de que no se encuentren los originales
+    // Si no existen los archivos, estos crearán texturas básicas
+    this.load.on('fileerror', (key, file) => {
+      console.warn(`Error cargando asset: ${key}. Creando respaldo.`);
+      
+      // Crear gráficos de respaldo al fallar la carga
+      if (key === 'cruz_guia') this.createFallbackCruz();
+      if (key === 'nazareno') this.createFallbackNazareno();
+      if (key === 'paso_misterio' || key === 'paso_gloria') this.createFallbackPaso(key);
+    });
     
     // Audio
     // this.load.audio('marchas', 'assets/audio/marchas.mp3');
+  }
+  
+  /**
+   * Crea una textura de respaldo para cruz guía
+   * @private
+   */
+  createFallbackCruz() {
+    const graphics = this.make.graphics();
+    
+    // Dibujar una cruz simple
+    graphics.lineStyle(4, 0xFFD700);
+    graphics.beginPath();
+    graphics.moveTo(32, 8);
+    graphics.lineTo(32, 56);
+    graphics.moveTo(16, 20);
+    graphics.lineTo(48, 20);
+    graphics.strokePath();
+    
+    graphics.generateTexture('cruz_guia', 64, 64);
+    graphics.destroy();
+    
+    console.log('Creada textura de respaldo para cruz_guia');
+  }
+  
+  /**
+   * Crea una textura de respaldo para nazareno
+   * @private
+   */
+  createFallbackNazareno() {
+    const graphics = this.make.graphics();
+    
+    // Dibujar un nazareno simple
+    graphics.fillStyle(0x7E1E9C);
+    // Capirote
+    graphics.fillTriangle(16, 0, 32, 32, 48, 0);
+    // Cuerpo
+    graphics.fillRect(16, 32, 32, 32);
+    
+    graphics.generateTexture('nazareno', 64, 64);
+    graphics.destroy();
+    
+    console.log('Creada textura de respaldo para nazareno');
+  }
+  
+  /**
+   * Crea una textura de respaldo para paso
+   * @param {string} key - Nombre de la clave de textura
+   * @private
+   */
+  createFallbackPaso(key) {
+    const graphics = this.make.graphics();
+    
+    // Color base según tipo de paso
+    const color = key === 'paso_misterio' ? 0x8B0000 : 0x4682B4;
+    
+    // Dibujar un paso simple
+    graphics.fillStyle(color);
+    graphics.fillRect(8, 16, 112, 64);
+    
+    // Detalles
+    graphics.fillStyle(0xFFD700);
+    graphics.fillRect(8, 8, 112, 8);
+    graphics.fillRect(8, 80, 112, 8);
+    
+    graphics.lineStyle(2, 0xFFD700);
+    graphics.strokeRect(8, 16, 112, 64);
+    
+    graphics.generateTexture(key, 128, 96);
+    graphics.destroy();
+    
+    console.log(`Creada textura de respaldo para ${key}`);
   }
   
   /**

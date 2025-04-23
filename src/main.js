@@ -84,6 +84,33 @@ try {
     currentYear: 1550
   };
   
+  // Manejador global de errores no controlados
+  window.addEventListener('error', function(event) {
+    console.error('Error global capturado:', event);
+    
+    // Intentar registrar el error en el LogManager si está disponible
+    try {
+      if (game && game.scene.scenes) {
+        const gameScene = game.scene.scenes.find(s => s.constructor.name === 'GameScene');
+        if (gameScene && gameScene.logManager) {
+          gameScene.logManager.error('Error no controlado capturado globalmente', {
+            message: event.message,
+            filename: event.filename,
+            lineno: event.lineno,
+            colno: event.colno,
+            error: event.error
+          });
+          // Mostrar mensaje al usuario
+          if (gameScene.showMessage) {
+            gameScene.showMessage('Se ha producido un error. Intenta de nuevo la acción.');
+          }
+        }
+      }
+    } catch (logError) {
+      console.error('Error al intentar registrar error global:', logError);
+    }
+  });
+  
 } catch (error) {
   console.error('Error al inicializar Phaser:', error);
   
